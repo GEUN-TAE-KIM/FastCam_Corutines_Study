@@ -176,7 +176,7 @@ suspend fun two() {
 }
 
 // 타입 지정 가능
-fun main() = runBlocking<Unit> {
+fun main10() = runBlocking<Unit> {
 
     launch {
         three()
@@ -186,6 +186,5 @@ fun main() = runBlocking<Unit> {
         one()
     }
     two()
-
 }
 
