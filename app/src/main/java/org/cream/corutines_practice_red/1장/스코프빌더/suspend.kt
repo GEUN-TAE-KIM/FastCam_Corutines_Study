@@ -103,6 +103,7 @@ TODO
 
 me
  getRandom4의 예외가 발생하여 부모 코루틴은 자식 코루틴이 1개라도 문제가 생기면 예외를 발생시킴
+ -> coroutineScope의 특징
 
  */
 suspend fun getRandom3(): Int {
@@ -136,7 +137,7 @@ suspend fun doSomething() = coroutineScope {
     }
 }
 
-fun main() = runBlocking {
+fun main23() = runBlocking {
     try {
         doSomething()
     } catch (e: IllegalArgumentException) {

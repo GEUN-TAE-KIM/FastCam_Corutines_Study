@@ -11,6 +11,7 @@ import kotlinx.coroutines.runBlocking
 Note
  코루틴을 만드는 함수를 = 코루틴 빌더
  runBlocking = 코루틴을 만들고 코드 블록의 수행이 끝날 때까지  runBlocking 이 막음
+ currentThread() = 현재 어떤 쓰레드를 사용하는 지 확인하는 것
  */
 fun main2() = runBlocking {
     println(Thread.currentThread().name)
