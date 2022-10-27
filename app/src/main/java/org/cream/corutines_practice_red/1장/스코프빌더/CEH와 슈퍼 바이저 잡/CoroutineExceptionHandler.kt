@@ -115,7 +115,7 @@ suspend fun supervisorFunc() = supervisorScope {
     launch(ceh) { printRandom2() }
 }
 
-fun main() = runBlocking {
+fun main35() = runBlocking {
     val scope = CoroutineScope(Dispatchers.IO)
     val job = scope.launch {
         supervisorFunc()
