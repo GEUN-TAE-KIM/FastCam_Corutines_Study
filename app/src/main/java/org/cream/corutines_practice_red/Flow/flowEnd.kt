@@ -40,7 +40,7 @@ TODO
 me
  try-catch 후 finally에서는 문제를 알수 없지만 onCompletion은 알수가 있음
  */
-fun main() = runBlocking {
+fun main32() = runBlocking {
     simple7()
         .onCompletion { cause ->
             if (cause != null) {
