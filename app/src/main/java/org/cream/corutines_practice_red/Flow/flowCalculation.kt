@@ -172,7 +172,7 @@ Note
 TODO
  count 연산자
  */
-fun main() = runBlocking {
+fun main14() = runBlocking {
     val counter = (1..10)
         .asFlow()
         .count {
