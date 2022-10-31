@@ -50,7 +50,7 @@ fun main19() = runBlocking {
 
 /*
 Note
- conflate = 수집 측이 느릴 경우 새로운 데이터가 있을 때 수집 측을 종료시키고 새로 시작하는 방법
+ collectLatest = 수집 측이 느릴 경우 새로운 데이터가 있을 때 수집 측을 종료시키고 새로 시작하는 방법
 
 TODO
  마지막 값만 처리
