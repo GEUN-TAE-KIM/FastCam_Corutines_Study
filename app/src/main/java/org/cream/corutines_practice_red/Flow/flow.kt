@@ -31,7 +31,7 @@ Note
 TODO
  launchIn을 사용하여 런칭하기
 */
-fun main() = runBlocking {
+fun main34() = runBlocking {
     events()
         .onEach { events -> println("Event: $events") }
         .launchIn(this) // 새로운 코루틴을 만듬
