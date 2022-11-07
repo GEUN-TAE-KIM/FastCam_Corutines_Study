@@ -39,7 +39,8 @@ fun main34() = runBlocking {
     // 여러 이벤트에 호출 가능능
 }
 
-fun main() {
+fun main35() {
     val test = "宅配ボックス\n部屋番号：？？？？"
     println(test)
+
 }
