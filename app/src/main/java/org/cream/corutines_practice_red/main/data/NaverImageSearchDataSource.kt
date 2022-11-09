@@ -17,14 +17,14 @@ class NaverImageSearchDataSource(
                 ?: closestPageToPosition?.nextKey?.minus(defaultDisplay)
         }
     }
-
+    // 나중에 맨션앱 리스폰스 처리한거 비교해서 봐보기 22/11/09
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Item> {
         val start = params.key ?: defaultStart
 
         return try {
-            // 시작
-            TODO("이미지를 가져와야합니다.")
-            // 끝
+            // 여러개의 API를 가져 온다면 asnyc{}를 사용하여 가져오는 것
+            // asnyc{val response~}.await하면 될려나?
+            val response = imageSearchService.getImages(query, params.loadSize, start)
 
             val items = response.items
             val nextKey = if (items.isEmpty()) {
