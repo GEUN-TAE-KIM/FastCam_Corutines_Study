@@ -22,8 +22,8 @@ class NaverImageSearchRepository {
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
                         // addHeader로 내 api 아이디와 시크릿을 설정
-                    .addHeader("X-Naver-Client-Id", "6TbuwtiCng3kgKidaI_9")
-                    .addHeader("X-Naver-Client-Secret","9nHU87Ry__")
+                    .addHeader("비밀", "비밀")
+                    .addHeader("비밀","비밀")
                     .build()
                 chain.proceed(request)
             }
