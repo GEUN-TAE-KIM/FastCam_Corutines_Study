@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.cream.corutines_practice_red.databinding.FragmentMainBinding
 
@@ -22,9 +23,6 @@ class ImageSearchFragment : Fragment() {
         super.onCreate(savedInstanceState)
         imageSearchViewModel = ViewModelProvider(this)[ImageSearchViewModel::class.java]
 
-        lifecycleScope.launch {
-            TODO("collectLatest를 이용해서 어댑터를 갱신해야합니다.")
-        }
     }
 
     override fun onCreateView(
@@ -35,10 +33,22 @@ class ImageSearchFragment : Fragment() {
         val binding = FragmentMainBinding.inflate(inflater, container, false)
         val root = binding.root
 
+        //프래그먼트에서는 lifecycleScope을 viewLifecycleOwner에서 가져와야 함
+        //lifecycleScope은 프래그 먼트를
+        //viewLifecycleOwner.lifecycleScope 뷰를 가져와서 프래그먼트에서는 이게 적절 함
+        viewLifecycleOwner.lifecycleScope.launch {
+            imageSearchViewModel.pagingDataFlow
+                .collectLatest { items ->
+                    adapter.submitData(items)
+                }
+        }
+
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = GridLayoutManager(context, 4)
+
         binding.search.setOnClickListener {
-            TODO("검색 기능을 구현해야합니다.")
+            val query = binding.editText.text.trim().toString()
+            imageSearchViewModel.handleQuery(query)
         }
 
         return root

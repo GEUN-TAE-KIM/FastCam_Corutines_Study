@@ -6,6 +6,6 @@ data class Item(
     val title: String,
     val link: String,
     val thumbnail: String,
-    val sizeHeight: Int,
-    val sizeWidth: Int
+    @SerializedName("sizeheight") val sizeHeight: Int,
+    @SerializedName("sizewidth") val sizeWidth: Int
 )

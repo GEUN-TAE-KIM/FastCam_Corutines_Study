@@ -18,11 +18,13 @@ class ImageSearchViewModel : ViewModel() {
     private val favorites = mutableSetOf<Item>()
     private val _favoritesFlow = MutableSharedFlow<List<Item>>()
 
-    val pagingDataFlow = queryFlow
+    val pagingDataFlow = queryFlow // BTS를 검색하다가 ATC로 검색해서 바꾸는 그런 것
         .flatMapLatest {
             searchImages(it)
         }
         .cachedIn(viewModelScope)
+    // 안드로이드가 제공하는 코루틴 스코프는 2개 viewModelScope 연수 앱에 쓴거
+    // lifecycleScope
 
     val favoritesFlow = _favoritesFlow.asSharedFlow()
 
