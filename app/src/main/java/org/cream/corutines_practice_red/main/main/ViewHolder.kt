@@ -3,6 +3,7 @@ package org.cream.corutines_practice_red.main.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.cream.corutines_practice_red.R
 import org.cream.corutines_practice_red.databinding.ImageSearchItemBinding
 import org.cream.corutines_practice_red.main.model.Item
@@ -13,7 +14,15 @@ class ImageSearchViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Item?) {
-        TODO("이미지 불러오기를 구현해야합니다.")
+        item?.let { item ->
+            Glide.with(binding.root)
+                .load(item.thumbnail)
+                .centerCrop()
+                .into(binding.imageView)
+            binding.imageView.setOnClickListener{
+                like.invoke(item) // 외부에 있는 이미지 호출
+            }
+        }
     }
 
     companion object {
