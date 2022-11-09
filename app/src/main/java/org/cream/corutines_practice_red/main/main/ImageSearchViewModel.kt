@@ -16,7 +16,7 @@ class ImageSearchViewModel : ViewModel() {
     private val repository = NaverImageSearchRepository()
     private val queryFlow = MutableSharedFlow<String>()
     private val favorites = mutableSetOf<Item>()
-    private val _favoritesFlow = MutableSharedFlow<List<Item>>()
+    private val _favoritesFlow = MutableSharedFlow<List<Item>>(replay = 1)
 
     val pagingDataFlow = queryFlow // BTS를 검색하다가 ATC로 검색해서 바꾸는 그런 것
         .flatMapLatest {

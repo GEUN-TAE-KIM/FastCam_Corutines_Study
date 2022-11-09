@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.cream.corutines_practice_red.R
 import org.cream.corutines_practice_red.databinding.FragmentFavouritesBinding
 import org.cream.corutines_practice_red.databinding.FragmentMainBinding
@@ -16,7 +19,7 @@ class FavouritesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        imageSearchViewModel = ViewModelProvider(this)[ImageSearchViewModel::class.java]
+        imageSearchViewModel = ViewModelProvider(requireActivity())[ImageSearchViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -25,6 +28,16 @@ class FavouritesFragment : Fragment() {
     ): View? {
         val binding = FragmentMainBinding.inflate(inflater, container, false)
         val root = binding.root
+
+        val adapter = FavoritesAdapter()
+        binding.recyclerView.adapter = adapter
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            imageSearchViewModel.favoritesFlow.collectLatest {
+                adapter.setItems(it)
+            }
+        }
+
 
         return root
     }

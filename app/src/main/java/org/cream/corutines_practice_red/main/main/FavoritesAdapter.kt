@@ -10,11 +10,12 @@ class FavoritesAdapter: RecyclerView.Adapter<ImageSearchViewHolder>() {
     private var items : List<Item> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageSearchViewHolder {
-        TODO("Not yet implemented")
+        return ImageSearchViewHolder.create({},parent)
     }
 
     override fun onBindViewHolder(holder: ImageSearchViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val item = items[position]
+        holder.bind(item)
     }
 
     override fun getItemCount(): Int {
@@ -23,5 +24,6 @@ class FavoritesAdapter: RecyclerView.Adapter<ImageSearchViewHolder>() {
 
     fun setItems(items: List<Item>) {
         this.items = items
+        notifyDataSetChanged()
     }
 }
